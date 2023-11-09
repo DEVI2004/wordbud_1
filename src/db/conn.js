@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/wordbudregistration", {
+mongoose.connect("mongodb+srv://admin:admin123@cluster0.yiblqcl.mongodb.net/", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
