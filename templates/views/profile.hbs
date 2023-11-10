@@ -3,14 +3,6 @@
 
 <div class="container">
   <div class="profile-details">
-
-    <!--
-    <div class="profile-img-container">
-     You can display the user's profile image here if you have one -->
-      <!-- <img class="profile-img" src="{{user.profileImage}}" alt="Profile Image"> 
-   
-    </div>
-    -->
     <form id="updateProfileForm" action="/update-profile" method="post" class="form-container">
       <div class="form-group">
         <label for="firstname">First Name:</label>
@@ -19,7 +11,7 @@
 
       <div class="form-group">
         <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" name="lastname" value="{{user.lastname}}" required class="form-control">
+        <input type="text" id="lastname" name="lastname" value="{{user.lastname}}" class="form-control">
       </div>
 
       <div class="form-group">
@@ -44,6 +36,17 @@
           <option value="Female" {{#if (eq user.gender "Female")}}selected{{/if}}>Female</option>
           <option value="Other" {{#if (eq user.gender "Other")}}selected{{/if}}>Other</option>
         </select>
+      </div>
+
+      <!-- New password fields -->
+      <div class="form-group">
+        <label for="newpassword">New Password:</label>
+        <input type="password" id="newpassword" name="newpassword" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="confirmpassword">Confirm New Password:</label>
+        <input type="password" id="confirmpassword" name="confirmpassword" class="form-control">
       </div>
 
       <div class="form-group">
@@ -73,6 +76,8 @@
       phone: document.getElementById("phone").value,
       age: document.getElementById("age").value,
       gender: document.getElementById("gender").value,
+      newpassword: document.getElementById("newpassword").value,
+      confirmpassword: document.getElementById("confirmpassword").value,
     };
 
     // Make an AJAX request to update the profile
@@ -91,7 +96,11 @@
           modal.style.display = "block";
         } else {
           // Handle the case where the update was not successful
-          alert(data.message || "Failed to update profile. Please try again.");
+          if (data.error) {
+            alert(data.error);
+          } else {
+            alert("Failed to update profile. Please try again.");
+          }
         }
       })
       .catch(error => {

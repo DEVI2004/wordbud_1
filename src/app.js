@@ -166,33 +166,77 @@ app.get("/profile", async (req, res) => {
 app.post("/update-profile", async (req, res) => {
   try {
     const userId = req.session.user._id;
-    const updatedUser = await Register.findByIdAndUpdate(
-      userId,
-      {
-        $set: {
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
-          email: req.body.email,
-          phone: req.body.phone,
-          age: req.body.age,
-          gender: req.body.gender,
-        },
-      },
-      { new: true }
-    );
-    if (updatedUser) {
-        //res.redirect("/profile");
-        //Redirect to the profile page after successful update
-      res.json({ success: true });
+
+    // Check if the email or phone number already exists for a different user
+    const existingUser = await Register.findOne({
+      $or: [{ email: req.body.email }, { phone: req.body.phone }],
+      _id: { $ne: userId }, // Exclude the current user from the check
+    });
+
+    if (existingUser) {
+      // If email or phone already exists, send an error response
+      res.json({ success: false, error: "Email or phone number already exists." });
+    } else {
+      // Update the profile if no conflicts
+
+      // Check if the new password is provided
+      if (req.body.newpassword) {
+        // Update password if provided
+        if (req.body.newpassword === req.body.confirmpassword) {
+          // If new password matches confirm password, update the password
+          const updatedUser = await Register.findByIdAndUpdate(
+            userId,
+            {
+              $set: {
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                email: req.body.email,
+                phone: req.body.phone,
+                age: req.body.age,
+                gender: req.body.gender,
+                password: req.body.newpassword,
+              },
+            },
+            { new: true }
+          );
+
+          if (updatedUser) {
+            res.json({ success: true });
+          } else {
+            res.status(404).send("User not found");
+          }
+        } else {
+          res.json({ success: false, error: "New password and confirm password do not match." });
+        }
       } else {
-        res.status(404).send("User not found");
+        // If new password is not provided, update other fields only
+        const updatedUser = await Register.findByIdAndUpdate(
+          userId,
+          {
+            $set: {
+              firstname: req.body.firstname,
+              lastname: req.body.lastname,
+              email: req.body.email,
+              phone: req.body.phone,
+              age: req.body.age,
+              gender: req.body.gender,
+            },
+          },
+          { new: true }
+        );
+
+        if (updatedUser) {
+          res.json({ success: true });
+        } else {
+          res.status(404).send("User not found");
+        }
       }
-    } catch (error) {
-      console.error("Update error:", error);
-      res.status(500).send("Internal Server Error");
     }
-  });
-  
+  } catch (error) {
+    console.error("Update error:", error);
+    res.status(500).send("Internal Server Error");
+  }
+});
 
 // Logout route
 app.get("/logout", (req, res) => {
