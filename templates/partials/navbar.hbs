@@ -1,7 +1,23 @@
+<!-- navbar.hbs -->
 <nav class="navbar">
     <ul class="nav-list">
+        
+        <li class="nav-item"><a href="/">wordbud</a></li>
         <li class="nav-item"><a href="/">Home</a></li>
+        {{#if isAuthenticated}}
+        <li class="nav-item"><a href="/courses">Courses</a></li>
+            <li class="nav-item"><a href="/profile">Profile</a></li>
+            <li class="nav-item"><a href="/logout">Logout</a></li>
+            
+        {{else}}
         <li class="nav-item"><a href="/login">Login</a></li>
-        <li class="nav-item"><a href="/register">Registeration</a></li>
+            <li class="nav-item"><a href="/register">Register</a></li>
+            
+        
+        {{/if}}
     </ul>
 </nav>
+
+
+
+ 

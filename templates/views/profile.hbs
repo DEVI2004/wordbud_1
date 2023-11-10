@@ -1,0 +1,118 @@
+{{> header}}
+{{> navbar}}
+
+<div class="container">
+  <div class="profile-details">
+
+    <!--
+    <div class="profile-img-container">
+     You can display the user's profile image here if you have one -->
+      <!-- <img class="profile-img" src="{{user.profileImage}}" alt="Profile Image"> 
+   
+    </div>
+    -->
+    <form id="updateProfileForm" action="/update-profile" method="post" class="form-container">
+      <div class="form-group">
+        <label for="firstname">First Name:</label>
+        <input type="text" id="firstname" name="firstname" value="{{user.firstname}}" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input type="text" id="lastname" name="lastname" value="{{user.lastname}}" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{user.email}}" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" value="{{user.phone}}" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" value="{{user.age}}" required class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required class="form-control">
+          <option value="Male" {{#if (eq user.gender "Male")}}selected{{/if}}>Male</option>
+          <option value="Female" {{#if (eq user.gender "Female")}}selected{{/if}}>Female</option>
+          <option value="Other" {{#if (eq user.gender "Other")}}selected{{/if}}>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Update Profile" class="btn-primary">
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal for success message -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="successMessage">Profile updated successfully!</p>
+  </div>
+</div>
+
+<script>
+  document.getElementById("updateProfileForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the form from submitting
+
+    // Collect form data
+    var formData = {
+      firstname: document.getElementById("firstname").value,
+      lastname: document.getElementById("lastname").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      age: document.getElementById("age").value,
+      gender: document.getElementById("gender").value,
+    };
+
+    // Make an AJAX request to update the profile
+    fetch("/update-profile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Show the modal on successful update
+          var modal = document.getElementById("myModal");
+          modal.style.display = "block";
+        } else {
+          // Handle the case where the update was not successful
+          alert(data.message || "Failed to update profile. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Error updating profile:", error);
+        alert("Failed to update profile. Please try again.");
+      });
+  });
+
+  // Additional code for closing the modal and redirecting to the home page
+  var span = document.getElementsByClassName("close")[0];
+  span.onclick = function () {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    window.location.href = "/"; // Redirect to the home page
+  };
+
+  window.onclick = function (event) {
+    var modal = document.getElementById("myModal");
+    if (event.target === modal) {
+      modal.style.display = "none";
+      window.location.href = "/"; // Redirect to the home page
+    }
+  };
+</script>

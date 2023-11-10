@@ -6,13 +6,13 @@ body, h1, p {
 
 /* Page container styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Encode Sans Expanded',sans-serif;;
   background-color: #f0f0f0;
 }
 
 /* Navbar styles */
 .navbar {
-  background-color: #333;
+  background-color:black;
   color: white;
   padding: 1rem;
 }
@@ -22,6 +22,11 @@ body {
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+.navbar-brand a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
 }
 
 .nav-item {
@@ -35,132 +40,135 @@ body {
 }
 
 .nav-item a:hover {
-  color: #ff9933;
+  color: #169D53;
 }
 
-/* Register form container styles */
-.register-container {
-  background-color: #fff;
-  max-width: 700px;
+/* Container styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hero section styles */
+.hero {
+  text-align: center;
+  padding: 2rem;
+  background-color: #169D53;
+  color: #fff;
+}
+
+/* Course card styles */
+.card {
+  margin-bottom: 20px;
+}
+
+/* Enroll button styles */
+.btn-enroll {
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.btn-enroll:hover {
+  background: #169D53;
+}
+
+/* Profile page styles */
+/* Profile details */
+.profile-details {
+  margin-top: 20px;
+}
+
+/* Form container */
+.form-container {
+  background: #fff;
+  max-width: 500px;
   margin: 2rem auto;
   padding: 2rem;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.register-title {
+/* Form title */
+.form-title {
   font-size: 2rem;
-  color: #333;
+  color: #169D53; /* Green color */
   margin-bottom: 1rem;
 }
 
-/* Input field styles */
+/* Input fields */
 .form-control {
   display: block;
   width: 100%;
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #000; /* Black border */
   border-radius: 5px;
   font-size: 16px;
   transition: border-color 0.3s;
 }
 
 .form-control:focus {
-  border-color: #007bff; /* Change the border color on focus */
+  border-color: #169D53; /* Green color on focus */
   outline: none;
 }
 
-/* Radio button styles */
-.radio-label {
-  margin-right: 20px;
-  font-size: 18px;
-  color: #333;
-}
-
-/* Register button styles */
-.btnRegister {
-  background: #007bff;
+/* Buttons */
+.btn-primary {
+  background: #169D53; /* Green color */
   color: #fff;
   font-weight: bold;
   cursor: pointer;
-  padding: 10px 20px;
+  transition: background 0.3s;
   border: none;
   border-radius: 5px;
-  font-size: 18px;
-  transition: background 0.3s;
-}
-
-.btnRegister:hover {
-  background: #0056b3; /* Change the button background color on hover */
-}
-
-/*login ka style*/
-.profile-img {
-  width: 120px;
-  height: 120px;
-  margin: 0 auto 20px;
-  display: block;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow effect */
-}
-
-.need-help {
-  margin-top: 20px;
-  text-align: center; /* Center align the "Need help?" link */
-}
-
-.new-account {
-  display: block;
-  margin-top: 20px;
-  text-align: center; /* Center align the "Create an account" link */
-  font-weight: bold;
-  color: #007bff; /* Change the link color to a primary blue color */
-}
-
-/* Style the form container */
-.account-wall {
-  background: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.login-title {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333; /* Change the title color */
-}
-
-/* Style the input fields and the "Sign in" button */
-.form-signin input[type="text"],
-.form-signin input[type="password"],
-.form-signin button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 10px 20px;
   font-size: 16px;
-  transition: border-color 0.3s;
 }
 
-.form-signin input[type="text"]:focus,
-.form-signin input[type="password"]:focus {
-  border-color: #007bff; /* Change the border color on focus */
-  outline: none;
+.btn-primary:hover {
+  background: #00743E; /* Darker shade of green on hover */
 }
 
-.form-signin button {
-  background: #007bff;
-  color: #fff;
+/* Modal styles *//*pop ka style*/
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+}
+
+/* Modal content */
+.modal-content {
+  background-color: white;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid black;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Close button */
+.close {
+  color: black;
+  float: right;
+  font-size: 28px;
   font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
 }
 
-.form-signin button:hover {
-  background: #0056b3; /* Change the button background color on hover */
+.close:hover,
+.close:focus {
+  color: #169D53;
+  text-decoration: none;
+  cursor: pointer;
 }

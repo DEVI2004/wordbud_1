@@ -1,0 +1,19 @@
+{{> header}}
+{{> navbar}}
+
+<div class="container">
+    <h2>{{course.title}}</h2>
+    <p>{{course.description}}</p>
+    {{#if isAuthenticated}}
+        <button class="btn btn-primary" onclick="enroll()">Enroll</button>
+    {{else}}
+        <p>Please <a href="/login">login</a> to enroll in this course.</p>
+    {{/if}}
+</div>
+
+<script>
+    function enroll() {
+        // Simulate enrollment (you need to implement this on the server)
+        alert("Enrolled in the course!");
+    }
+</script>
