@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(static_path));
 app.set("view engine", "hbs");
 app.set("views", templates_path);
-
+app.use("/images", express.static(path.join(__dirname, "../public/css/images")));
 hbs.registerPartials(partials_path);
 hbs.registerHelper(handlebarsHelpers);
 

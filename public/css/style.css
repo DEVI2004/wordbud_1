@@ -1,20 +1,32 @@
 /* Reset some default styles */
-body, h1, p {
+* {
   margin: 0;
   padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
 }
 
 /* Page container styles */
 body {
-  font-family: 'Encode Sans Expanded',sans-serif;;
-  background-color: #f0f0f0;
+  background: white;
+  color: black;
 }
+
+#header {
+  width: 100%;
+  height: 140vh;
+
+  background-image: src("./IMG_9165.PNG");
+  background-size: cover;
+  background-position: center;
+}
+
 
 /* Navbar styles */
 .navbar {
-  background-color:black;
+  background-color:#3cb371;
   color: white;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 .nav-list {
@@ -40,19 +52,19 @@ body {
 }
 
 .nav-item a:hover {
-  color: #169D53;
+  color: #FF0000;
 }
 
 /* Container styles */
 .container {
-  max-width: 1200px;
+  max-width: 2000px;
   margin: 0 auto;
 }
 
 /* Hero section styles */
 .hero {
   text-align: center;
-  padding: 2rem;
+  padding: 10rem;
   background-color: #169D53;
   color: #fff;
 }
@@ -92,7 +104,7 @@ body {
   margin: 2rem auto;
   padding: 2rem;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px #169D53;
 }
 
 /* Form title */
@@ -146,7 +158,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+  background-color: #169D53; /* Black with opacity */
 }
 
 /* Modal content */
@@ -171,4 +183,43 @@ body {
   color: #169D53;
   text-decoration: none;
   cursor: pointer;
+}
+
+.login-form,
+.registration-form {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-form,
+.registration-form {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass{
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px #4747470b;
+  backdrop-filter: blur(7.1px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  @apply border-4 border-gray-50 shrink-0 h-3/4 w-[30%] rounded-3xl py-20 px-7 min-w-max;
+}
+
+.textbox{
+  @apply border-0 px-5 py-4 rounded-xl w-3/4 shadow-sm text-lg;
+  @apply focus:outline-none;
+}
+
+.btn{
+  @apply border bg-indigo-500 w-3/4 py-4 rounded-lg text-gray-50 text-xl shadow-sm text-center;
+}
+
+.btn:hover{
+  background-color: #ff6a6a;
+}
+
+input[type='file']{
+  display: none;
 }
